@@ -1,0 +1,6 @@
+---
+DEV:
+        hosts:
+                - 192.168.33.11
+        user: vagrant
+        password: vagrant

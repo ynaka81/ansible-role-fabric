@@ -1,0 +1,24 @@
+---
+- name: add fabric group
+  group: name={{ fabric_group }} state=present
+
+- name: add fabric user
+  user: name={{ fabric_user }} group={{ fabric_group }} home={{ fabric_home }} state=present
+
+- name: install precondition packages
+  yum: name={{ item }} state=latest
+  with_items:
+          - gcc
+          - python-devel
+
+- name: install optional precondition packages (these packages are not necessary but useful for fabric environment)
+  pip: name={{ item }} state=latest
+  with_items:
+          - PyYAML
+  when: fabric_install_options
+
+- name: install fabric
+  pip: name=fabric state=latest
+
+- name: configure .fabricrc
+  template: src=.fabricrc dest={{ fabric_home }}/.fabricrc owner={{ fabric_user }} group={{ fabric_group }}

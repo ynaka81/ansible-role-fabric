@@ -1,0 +1,9 @@
+---
+# install settings
+fabric_install_options: True
+# local settings
+fabric_user: vagrant
+fabric_group: vagrant
+fabric_home: /home/vagrant
+# environment configuration
+fabric_warn_only: True

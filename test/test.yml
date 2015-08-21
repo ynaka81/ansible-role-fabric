@@ -1,0 +1,14 @@
+---
+- hosts: test
+  sudo: yes
+  remote_user: vagrant
+  vars:
+          roles_home: ../..
+  roles:
+          - { role: "{{ roles_home }}/ansible-role-fabric" }
+  tasks:
+          - name: copy fabfile.py
+            copy: src=fabfile.py dest={{ fabric_home }}/fabfile.py owner={{ fabric_user }} group={{ fabric_group }}
+
+          - name: copy target.yml
+            copy: src=target.yml dest={{ fabric_home }}/target.yml owner={{ fabric_user }} group={{ fabric_group }}
